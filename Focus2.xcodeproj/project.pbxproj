@@ -1,0 +1,434 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		154256CA1B821F9400F2C500 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 154256C91B821F9400F2C500 /* AppDelegate.swift */; };
+		154256CC1B821F9400F2C500 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 154256CB1B821F9400F2C500 /* GameScene.sks */; };
+		154256CE1B821F9400F2C500 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 154256CD1B821F9400F2C500 /* GameScene.swift */; };
+		154256D01B821F9400F2C500 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 154256CF1B821F9400F2C500 /* GameViewController.swift */; };
+		154256D31B821F9400F2C500 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 154256D11B821F9400F2C500 /* Main.storyboard */; };
+		154256D81B821F9400F2C500 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 154256D61B821F9400F2C500 /* LaunchScreen.xib */; };
+		154256E41B821F9400F2C500 /* Focus2Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 154256E31B821F9400F2C500 /* Focus2Tests.swift */; };
+		154256F01B8558D600F2C500 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 154256EF1B8558D600F2C500 /* Images.xcassets */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		154256DE1B821F9400F2C500 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 154256BC1B821F9400F2C500 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 154256C31B821F9400F2C500;
+			remoteInfo = Focus2;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		154256C41B821F9400F2C500 /* Focus2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Focus2.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		154256C81B821F9400F2C500 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		154256C91B821F9400F2C500 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		154256CB1B821F9400F2C500 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
+		154256CD1B821F9400F2C500 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
+		154256CF1B821F9400F2C500 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
+		154256D21B821F9400F2C500 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		154256D71B821F9400F2C500 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		154256DD1B821F9400F2C500 /* Focus2Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Focus2Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		154256E21B821F9400F2C500 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		154256E31B821F9400F2C500 /* Focus2Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Focus2Tests.swift; sourceTree = "<group>"; };
+		154256EF1B8558D600F2C500 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		154256C11B821F9400F2C500 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		154256DA1B821F9400F2C500 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		154256BB1B821F9400F2C500 = {
+			isa = PBXGroup;
+			children = (
+				154256C61B821F9400F2C500 /* Focus2 */,
+				154256E01B821F9400F2C500 /* Focus2Tests */,
+				154256C51B821F9400F2C500 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		154256C51B821F9400F2C500 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				154256C41B821F9400F2C500 /* Focus2.app */,
+				154256DD1B821F9400F2C500 /* Focus2Tests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		154256C61B821F9400F2C500 /* Focus2 */ = {
+			isa = PBXGroup;
+			children = (
+				154256C91B821F9400F2C500 /* AppDelegate.swift */,
+				154256CB1B821F9400F2C500 /* GameScene.sks */,
+				154256CD1B821F9400F2C500 /* GameScene.swift */,
+				154256CF1B821F9400F2C500 /* GameViewController.swift */,
+				154256D11B821F9400F2C500 /* Main.storyboard */,
+				154256D61B821F9400F2C500 /* LaunchScreen.xib */,
+				154256EF1B8558D600F2C500 /* Images.xcassets */,
+				154256C71B821F9400F2C500 /* Supporting Files */,
+			);
+			path = Focus2;
+			sourceTree = "<group>";
+		};
+		154256C71B821F9400F2C500 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				154256C81B821F9400F2C500 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		154256E01B821F9400F2C500 /* Focus2Tests */ = {
+			isa = PBXGroup;
+			children = (
+				154256E31B821F9400F2C500 /* Focus2Tests.swift */,
+				154256E11B821F9400F2C500 /* Supporting Files */,
+			);
+			path = Focus2Tests;
+			sourceTree = "<group>";
+		};
+		154256E11B821F9400F2C500 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				154256E21B821F9400F2C500 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		154256C31B821F9400F2C500 /* Focus2 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 154256E71B821F9400F2C500 /* Build configuration list for PBXNativeTarget "Focus2" */;
+			buildPhases = (
+				154256C01B821F9400F2C500 /* Sources */,
+				154256C11B821F9400F2C500 /* Frameworks */,
+				154256C21B821F9400F2C500 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Focus2;
+			productName = Focus2;
+			productReference = 154256C41B821F9400F2C500 /* Focus2.app */;
+			productType = "com.apple.product-type.application";
+		};
+		154256DC1B821F9400F2C500 /* Focus2Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 154256EA1B821F9400F2C500 /* Build configuration list for PBXNativeTarget "Focus2Tests" */;
+			buildPhases = (
+				154256D91B821F9400F2C500 /* Sources */,
+				154256DA1B821F9400F2C500 /* Frameworks */,
+				154256DB1B821F9400F2C500 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				154256DF1B821F9400F2C500 /* PBXTargetDependency */,
+			);
+			name = Focus2Tests;
+			productName = Focus2Tests;
+			productReference = 154256DD1B821F9400F2C500 /* Focus2Tests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		154256BC1B821F9400F2C500 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0640;
+				ORGANIZATIONNAME = Abdou23;
+				TargetAttributes = {
+					154256C31B821F9400F2C500 = {
+						CreatedOnToolsVersion = 6.4;
+					};
+					154256DC1B821F9400F2C500 = {
+						CreatedOnToolsVersion = 6.4;
+						TestTargetID = 154256C31B821F9400F2C500;
+					};
+				};
+			};
+			buildConfigurationList = 154256BF1B821F9400F2C500 /* Build configuration list for PBXProject "Focus2" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 154256BB1B821F9400F2C500;
+			productRefGroup = 154256C51B821F9400F2C500 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				154256C31B821F9400F2C500 /* Focus2 */,
+				154256DC1B821F9400F2C500 /* Focus2Tests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		154256C21B821F9400F2C500 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				154256D81B821F9400F2C500 /* LaunchScreen.xib in Resources */,
+				154256F01B8558D600F2C500 /* Images.xcassets in Resources */,
+				154256CC1B821F9400F2C500 /* GameScene.sks in Resources */,
+				154256D31B821F9400F2C500 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		154256DB1B821F9400F2C500 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		154256C01B821F9400F2C500 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				154256CE1B821F9400F2C500 /* GameScene.swift in Sources */,
+				154256D01B821F9400F2C500 /* GameViewController.swift in Sources */,
+				154256CA1B821F9400F2C500 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		154256D91B821F9400F2C500 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				154256E41B821F9400F2C500 /* Focus2Tests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		154256DF1B821F9400F2C500 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 154256C31B821F9400F2C500 /* Focus2 */;
+			targetProxy = 154256DE1B821F9400F2C500 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		154256D11B821F9400F2C500 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				154256D21B821F9400F2C500 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		154256D61B821F9400F2C500 /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				154256D71B821F9400F2C500 /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		154256E51B821F9400F2C500 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		154256E61B821F9400F2C500 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		154256E81B821F9400F2C500 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				INFOPLIST_FILE = Focus2/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		154256E91B821F9400F2C500 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				INFOPLIST_FILE = Focus2/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		154256EB1B821F9400F2C500 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = Focus2Tests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Focus2.app/Focus2";
+			};
+			name = Debug;
+		};
+		154256EC1B821F9400F2C500 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = Focus2Tests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Focus2.app/Focus2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		154256BF1B821F9400F2C500 /* Build configuration list for PBXProject "Focus2" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				154256E51B821F9400F2C500 /* Debug */,
+				154256E61B821F9400F2C500 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		154256E71B821F9400F2C500 /* Build configuration list for PBXNativeTarget "Focus2" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				154256E81B821F9400F2C500 /* Debug */,
+				154256E91B821F9400F2C500 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		154256EA1B821F9400F2C500 /* Build configuration list for PBXNativeTarget "Focus2Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				154256EB1B821F9400F2C500 /* Debug */,
+				154256EC1B821F9400F2C500 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 154256BC1B821F9400F2C500 /* Project object */;
+}
