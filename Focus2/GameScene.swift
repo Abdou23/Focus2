@@ -7,67 +7,99 @@
 //
 
 import SpriteKit
+import iAd
 
+//MARK:- Physics
 struct PhysicsCategory {
     
     static let HeroCategory: UInt32 =          0x1 << 0
     static let BlockCategory: UInt32 =         0x1 << 1
 }
 
-// Nodes
-var block = SKSpriteNode()
-var blockLeft = SKSpriteNode()
-var blockRight = SKSpriteNode()
-var hero = SKShapeNode()
-var heroRight = SKShapeNode()
 
-// Labels
-var scoreLabel = SKLabelNode(fontNamed: "STHeitiTC-Medium")
-var highScoreLabel = SKLabelNode(fontNamed: "STHeitiTC-Medium")
-var startLabel = SKLabelNode(fontNamed: "STHeitiTC-Medium")
-var instructionsLabel = UILabel()
-
-// Values
-var previous = UInt32()
-var colorNumber = 1
-var colorNumberRight = 1
-var score = 0
-var highScore = 0
-
-// Timers
-var spawnTimer = NSTimer()
-var spawnTwoBlocks = NSTimer()
-
-// Bools
-var isStarted = false
-var isFirstTime = true
-var isPhaseOne = true
-
-// Arrays
-var colors = [UIColor]()
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
+    
+    //MARK:- Variables
+
+    // Layers
+    let blockLayer = SKNode()
+    let bgLayer = SKNode()
+    
+    // Nodes
+    var block = SKSpriteNode()
+    var blockLeft = SKSpriteNode()
+    var blockRight = SKSpriteNode()
+    //var hero = SKShapeNode()
+    var hero = SKSpriteNode()
+    //var heroRight = SKShapeNode()
+    var heroRight = SKSpriteNode()
+    
+    // Labels
+    var scoreLabel = SKLabelNode(fontNamed: "Futura-CondensedExtraBold ")
+    var highScoreLabel = SKLabelNode(fontNamed: "STHeitiTC-Medium")
+    var startLabel = SKLabelNode(fontNamed: "STHeitiTC-Medium")
+    var instructionsLabel = UILabel()
+    var hsFrame = SKSpriteNode() // highscore label frame
+    
+    // Values
+    var previous = UInt32()
+    var colorNumber = 1
+    var colorNumberRight = 1
+    var score = 0
+    var highScore = 0
+    var qWidth: CGFloat!
+    
+    // Colors
+    let redColor = UIColor(red: 255 / 255, green: 47 / 255, blue: 47 / 255, alpha: 1)
+    let tealColor = UIColor(red: 36 / 255, green: 198 / 255, blue: 198 / 255, alpha: 1)
+    let orangeColor = UIColor(red: 255 / 255, green: 141 / 255, blue: 47 / 255, alpha: 1)
+    let blueColor = UIColor(red: 58 / 255, green: 93 / 255, blue: 209 / 255, alpha: 1)
+    let purpleColor = UIColor(red: 151 / 255, green: 47 / 255, blue: 208 / 255, alpha: 1)
+    
+    // Timers
+    var spawnTimer = NSTimer()
+    var spawnTwoBlocks = NSTimer()
+    
+    // Bools
+    var isStarted = false
+    var isFirstTime = true
+    var isPhaseOne = true
+    
+    // Arrays
+    var colors = [UIColor]()
+    var names = [String]()
+    
     override func didMoveToView(view: SKView) {
         /* Setup your scene here */
         
         physicsWorld.contactDelegate = self
-        
-        anchorPoint = CGPointZero
 
-        backgroundColor = UIColor(red: 0.94, green: 0.97, blue: 1, alpha: 1)
+        anchorPoint = CGPointZero
+        addChild(blockLayer)
+        addChild(bgLayer)
+        //blockLayer.position = CGPoint(x: size.width / 2, y: size.height / 2)
+        //backgroundColor = UIColor(red: 0.94, green: 0.97, blue: 1, alpha: 1)
+
+        qWidth = size.width / 4
         
-        if var storedHighScore: AnyObject  = NSUserDefaults.standardUserDefaults().objectForKey("highScore") {
+        createBackground()
+        print(size.height)
+        print(qWidth)
+        
+        if let storedHighScore: AnyObject  = NSUserDefaults.standardUserDefaults().objectForKey("highScore") {
             
             highScore = storedHighScore as! Int
         }
         
-        colors = [UIColor.redColor(), UIColor.blueColor(), UIColor.yellowColor(), UIColor.greenColor(), UIColor.purpleColor()]
-        
+        colors = [blueColor, redColor, tealColor, orangeColor, purpleColor]
+        names = ["blue", "yellow","cyan", "pink", "red"]
         createLabels()
 
 
     }
     
+//MARK:- Setup
     
     func randomNumber(max: UInt32) -> UInt32 {
         
@@ -88,16 +120,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
      
         score = 0
         
-        runAction(SKAction.waitForDuration(5))
+        //runAction(SKAction.waitForDuration(5))
         spawnTimer = NSTimer.scheduledTimerWithTimeInterval(2, target: self, selector: "createBlock", userInfo: nil, repeats: true)
         spawnTwoBlocks = NSTimer.scheduledTimerWithTimeInterval(3, target: self, selector: "createTwoBlocks", userInfo: nil, repeats: true)
-
         scoreLabel.text = "0"
         createHero()
         isStarted = true
         startLabel.hidden = true
         instructionsLabel.hidden = true
-        highScoreLabel.hidden = true
+        hsFrame.hidden = true
 
         if scoreLabel.hidden == true {
             
@@ -105,13 +136,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         
         if isFirstTime {
-            
+
             isFirstTime = false
             
         } else {
             
             scoreLabel.runAction(SKAction.sequence([SKAction.moveByX(0, y: 200, duration: 0.5), SKAction.scaleTo(1, duration: 1)]))
-
 
         }
 
@@ -126,14 +156,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             highScoreLabel.text = "Highscore: \(highScore)"
             
         }
+        blockLayer.removeAllChildren()
         score = 0
         isStarted = false
         isPhaseOne = true
-        enumerateChildNodesWithName("block") {
-         node, stop in
-            
-            node.removeFromParent()
-        }
+        colorNumber = 0
+        colorNumberRight = 0
+        
         hero.removeFromParent()
         heroRight.removeFromParent()
         removeAllActions()
@@ -141,13 +170,25 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         spawnTwoBlocks.invalidate()
         startLabel.hidden = false
         instructionsLabel.hidden = false
-        highScoreLabel.hidden = false
+        hsFrame.hidden = false
         scoreLabel.runAction(SKAction.sequence([SKAction.moveByX(0, y:  -200, duration: 0.5), SKAction.scaleTo(1.5, duration: 1)]))
+        
 
         
     }
     
-
+//MARK:- Creations
+    
+    func createBackground() {
+        
+        let BG = SKSpriteNode(imageNamed: "Night-BG")
+        BG.position = CGPoint(x: size.width / 2, y: size.height / 2)
+        //BG.size = CGSizeMake(size.width, size.height)
+        BG.zPosition = -10
+        bgLayer.addChild(BG)
+        print(BG.size)
+    }
+    
     func createLabels() {
         
         // ScoreLabel
@@ -164,7 +205,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         startLabel.text = "Tap to start"
         startLabel.position = CGPoint(x: size.width / 2, y: size.height / 2)
         startLabel.fontSize = 60
-        startLabel.fontColor = UIColor.blackColor()
+        startLabel.fontColor = UIColor.grayColor()
         
         addChild(startLabel)
         
@@ -178,36 +219,38 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         instructionsLabel.lineBreakMode = NSLineBreakMode.ByWordWrapping
         instructionsLabel.sizeToFit()
         instructionsLabel.textAlignment = NSTextAlignment.Center
-        instructionsLabel.textColor = UIColor.brownColor()
+        instructionsLabel.textColor = UIColor.yellowColor()
         
         view?.addSubview(instructionsLabel) // <- View not self
         
-        highScoreLabel = SKLabelNode(text: "Highscore: \(highScore)")
-        highScoreLabel.position = CGPoint(x: size.width / 2, y: size.height / 2 - 70)
-        highScoreLabel.fontSize = 40
-        highScoreLabel.fontColor = UIColor.blueColor()
+        hsFrame = SKSpriteNode(color: SKColor.grayColor(), size: CGSizeMake(300, 50))
+        hsFrame.position = CGPoint(x: size.width / 2, y: size.height / 2 - 70)
+        addChild(hsFrame)
         
-        addChild(highScoreLabel)
+        highScoreLabel = SKLabelNode(text: "Highscore: \(highScore)")
+        highScoreLabel.position.y = highScoreLabel.position.y - 10
+        highScoreLabel.fontSize = 30
+        highScoreLabel.fontColor = UIColor.whiteColor()
+        
+        hsFrame.addChild(highScoreLabel)
     }
     
 
     
     func createBlock() {
         
-        var randomColor = Int(randomNumber(5))
+        let randomColor = Int(randomNumber(5))
         
-        block = SKSpriteNode(color: colors[randomColor], size: CGSizeMake(250, 20))
+        block = SKSpriteNode(imageNamed: "\(names[randomColor])" + "_bar")
         block.position = CGPoint(x: size.width / 2, y: size.height )
-        block.name = "block"
-        
+        block.name = "\(names[randomColor])"
         block.physicsBody = SKPhysicsBody(rectangleOfSize: block.size)
         block.physicsBody?.affectedByGravity = false
         block.physicsBody?.categoryBitMask = PhysicsCategory.BlockCategory
         block.physicsBody?.contactTestBitMask = PhysicsCategory.HeroCategory
         
         block.runAction(SKAction.moveTo(CGPoint(x: block.position.x, y: 0 - block.size.height), duration: 3))
-        
-        addChild(block)
+        blockLayer.addChild(block)
     }
     
     func createTwoBlocks() {
@@ -215,12 +258,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         if !isPhaseOne {
             
             
-            var randomColor = Int(randomNumber(5))
-            var randomColorRight = Int(randomNumber(5))
+            let randomColor = Int(randomNumber(5))
+            let randomColorRight = Int(randomNumber(5))
             
-            blockLeft = SKSpriteNode(color: colors[randomColor], size: CGSizeMake(180, 20))
-            blockLeft.position = CGPoint(x: 2 + blockLeft.size.width / 2, y: size.height )
-            blockLeft.name = "block"
+            blockLeft = SKSpriteNode(imageNamed: "\(names[randomColor])" + "_bar")
+            blockLeft.size = CGSize(width: block.size.width / 1.5, height: block.size.height)
+            blockLeft.position = CGPoint(x: 31 + blockLeft.size.width / 2, y: size.height )
+            print("block:  \(blockLeft.size.width)")
+            blockLeft.name = "\(names[randomColor])"
             
             blockLeft.physicsBody = SKPhysicsBody(rectangleOfSize: blockLeft.size)
             blockLeft.physicsBody?.affectedByGravity = false
@@ -229,31 +274,33 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             
             blockLeft.runAction(SKAction.moveTo(CGPoint(x: blockLeft.position.x, y: 0 - blockLeft.size.height), duration: 3))
             
-            addChild(blockLeft)
+            blockLayer.addChild(blockLeft)
             
-            blockRight = SKSpriteNode(color: colors[randomColorRight], size: CGSizeMake(180, 20))
-            blockRight.position = CGPoint(x: 187.5 + blockRight.size.width / 2, y: size.height )
-            blockRight.name = "block"
+            // Right
+            blockRight = SKSpriteNode(imageNamed: "\(names[randomColorRight])" + "_bar")
+            blockRight.size = CGSize(width: block.size.width / 1.5, height: blockRight.size.height)
+            blockRight.position = CGPoint(x: size.width / 2 + 31 + blockRight.size.width / 2, y: size.height )
+           
+            blockRight.name = "\(names[randomColorRight])"
 
             blockRight.physicsBody = SKPhysicsBody(rectangleOfSize: blockRight.size)
             blockRight.physicsBody?.affectedByGravity = false
             blockRight.physicsBody?.categoryBitMask = PhysicsCategory.BlockCategory
             blockRight.physicsBody?.contactTestBitMask = PhysicsCategory.HeroCategory
             
-            blockRight.runAction(SKAction.moveTo(CGPoint(x: blockRight.position.x, y: 0 - blockRight.size.height), duration: 6))
+            blockRight.runAction(SKAction.moveTo(CGPoint(x: blockRight.position.x, y: 0 - blockRight.size.height), duration: 5.5))
             
-            addChild(blockRight)
+            blockLayer.addChild(blockRight)
             
         }
         
     }
-    
+    /*
     func createHero() {
         
         hero = SKShapeNode(circleOfRadius: 10)
         hero.fillColor = colors[0]
         hero.position = CGPoint(x: size.width / 2, y: 200)
-        hero.lineWidth = 1
         hero.antialiased = true
      
         hero.physicsBody = SKPhysicsBody(circleOfRadius: hero.frame.size.width / 2)
@@ -262,18 +309,49 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         hero.physicsBody?.categoryBitMask = PhysicsCategory.HeroCategory
         hero.physicsBody?.contactTestBitMask = PhysicsCategory.BlockCategory
         
+
         
         addChild(hero)
         
         hero.runAction(SKAction.scaleTo(3, duration: 0.5))
     }
+    */
     
+    
+    func createHero() {
+        
+        hero = SKSpriteNode(imageNamed: "blue_ball")
+        hero.position = CGPoint(x: size.width / 2, y: 200)
+        hero.size = CGSizeMake(hero.size.width / 2, hero.size.height / 2)
+        hero.name =  "blue"
+        
+        
+        hero.physicsBody = SKPhysicsBody(circleOfRadius: hero.size.width / 2)
+        hero.physicsBody?.affectedByGravity = false
+        hero.physicsBody?.dynamic = false
+        hero.physicsBody?.categoryBitMask = PhysicsCategory.HeroCategory
+        hero.physicsBody?.contactTestBitMask = PhysicsCategory.BlockCategory
+
+        addChild(hero)
+        
+        hero.runAction(SKAction.scaleTo(2, duration: 0.5))
+        
+        // Rotation
+        /*
+        let rotation = SKAction.sequence([SKAction.rotateByAngle(CGFloat(M_PI / 1.5), duration: 0.4), SKAction.rotateByAngle(CGFloat(-M_PI / 1.5), duration: 0.4)])
+        hero.runAction(SKAction.repeatActionForever(rotation))
+        */
+        
+        
+
+    }
+    
+    /*
     func createHeroRight() {
         
         heroRight = SKShapeNode(circleOfRadius: 10)
         heroRight.fillColor = colors[0]
-        heroRight.position = CGPoint(x: 285, y: 200)
-        heroRight.lineWidth = 1
+        heroRight.position = CGPoint(x: (size.width - qWidth), y: 200)
         heroRight.antialiased = true
         
         heroRight.physicsBody = SKPhysicsBody(circleOfRadius: heroRight.frame.size.width / 2)
@@ -282,15 +360,43 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         heroRight.physicsBody?.categoryBitMask = PhysicsCategory.HeroCategory
         heroRight.physicsBody?.contactTestBitMask = PhysicsCategory.BlockCategory
         
-        
         addChild(heroRight)
         
         heroRight.runAction(SKAction.scaleTo(3, duration: 0.5))
 
     }
+    */
     
+    func createHeroRight() {
+        
+        heroRight = SKSpriteNode(imageNamed: "blue_ball")
+        heroRight.position = CGPoint(x: (size.width - qWidth), y: 200)
+        heroRight.size = CGSizeMake(hero.size.width / 2, hero.size.height / 2)
+        heroRight.name = "blue"
+        
+        //heroRight.zRotation = CGFloat(M_PI / 1.5)
+        
+        heroRight.physicsBody = SKPhysicsBody(circleOfRadius: heroRight.size.width / 2)
+        heroRight.physicsBody?.affectedByGravity = false
+        heroRight.physicsBody?.dynamic = false
+        heroRight.physicsBody?.categoryBitMask = PhysicsCategory.HeroCategory
+        heroRight.physicsBody?.contactTestBitMask = PhysicsCategory.BlockCategory
+        
+        
+        addChild(heroRight)
+        
+        
+        heroRight.runAction(SKAction.scaleTo(2, duration: 0.5))
+        
+        // Rotation
+        /*
+        let rotation = SKAction.sequence([SKAction.rotateByAngle(CGFloat(-M_PI / 1.5), duration: 0.4), SKAction.rotateByAngle(CGFloat(M_PI / 1.5), duration: 0.4)])
+        heroRight.runAction(SKAction.repeatActionForever(rotation))*/
+    }
     
-    func changeHeroColor(heroNum: Int, hero: SKShapeNode) {
+//MARK:- Gameplay Actions
+    /*
+    func changeHeroColor(heroNum: Int, hero: SKSpriteNode) {
         
         if heroNum == 1 {
             
@@ -299,7 +405,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 colorNumber = 0
             }
             
-            hero.fillColor = colors[colorNumber]
+            hero.color = colors[colorNumber]
             colorNumber++
             
         } else {
@@ -309,11 +415,39 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 colorNumberRight = 0
             }
             
-            heroRight.fillColor = colors[colorNumberRight]
+            hero.color = colors[colorNumberRight]
             colorNumberRight++
         }
         
 
+
+    }*/
+    
+    func changeHeroColor(heroNum: Int, hero: SKSpriteNode) {
+        
+        if heroNum == 1 {
+            
+            if colorNumber >= colors.count {
+                
+                colorNumber = 0
+            }
+            
+            
+            hero.texture = SKTexture(imageNamed: "\(names[colorNumber])" + "_ball")
+            hero.name = names[colorNumber]
+            colorNumber++
+            
+        } else {
+            
+            if colorNumberRight >= colors.count {
+                
+                colorNumberRight = 0
+            }
+            
+            hero.texture = SKTexture(imageNamed: "\(names[colorNumberRight])" + "_ball")
+            hero.name = names[colorNumberRight]
+            colorNumberRight++
+        }
 
     }
     
@@ -323,10 +457,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         NSUserDefaults.standardUserDefaults().setInteger(highScore, forKey: "highScore")
     }
     
-    override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
+//MARK:- Touch
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         /* Called when a touch begins */
         
-        for touch in (touches as! Set<UITouch>) {
+        for touch in (touches ) {
             let location = touch.locationInNode(self)
             
             if isStarted {
@@ -355,6 +490,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
     }
    
+//MARK:- Contact
     func didBeginContact(contact: SKPhysicsContact) {
         
         // Setup
@@ -377,12 +513,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         if firstBody.categoryBitMask == PhysicsCategory.HeroCategory && secondBody.categoryBitMask == PhysicsCategory.BlockCategory {
             
-            var hitBlock = secondBody.node as! SKSpriteNode
+            let hitBlock = secondBody.node as! SKSpriteNode
             
-            if hero.fillColor == hitBlock.color || heroRight.fillColor == hitBlock.color{
+            if hero.name == hitBlock.name || heroRight.name == hitBlock.name{
                 
                 hitBlock.removeFromParent()
                 score++
+                
                 scoreLabel.text = "\(score)"
                 
             } else {
@@ -392,17 +529,19 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         
     }
-    
+   
+//MARK:- Update    
     override func update(currentTime: CFTimeInterval) {
         /* Called before each frame is rendered */
         
-        if score > 2 {
+        if score > 0 {
             
             if isPhaseOne {
                 
-                isPhaseOne = false
                 spawnTimer.invalidate()
-                hero.runAction(SKAction.moveToX(95, duration: 1))
+                isPhaseOne = false
+                
+                hero.runAction(SKAction.moveToX(qWidth, duration: 0.7))
                 createHeroRight()
             }
 

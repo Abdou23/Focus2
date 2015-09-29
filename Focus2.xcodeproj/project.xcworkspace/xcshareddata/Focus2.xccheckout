@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>67D73424-46AF-4188-BBB9-70EB3B268CDF</string>
+	<key>IDESourceControlProjectName</key>
+	<string>Focus2</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>F79368A919D65342A645B231EF36F8354ACC1F6B</key>
+		<string>https://github.com/Abdou23/Focus2.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>Focus2.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>F79368A919D65342A645B231EF36F8354ACC1F6B</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/Abdou23/Focus2.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>F79368A919D65342A645B231EF36F8354ACC1F6B</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>F79368A919D65342A645B231EF36F8354ACC1F6B</string>
+			<key>IDESourceControlWCCName</key>
+			<string>Focus2</string>
+		</dict>
+	</array>
+</dict>
+</plist>
